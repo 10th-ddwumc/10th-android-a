@@ -9,12 +9,12 @@
     <item
         android:id="@+id/shop"
         android:icon="@drawable/listmagnifyingglass"
-        android:title="구매" />
+        android:title="구매하기" />
 
     <item
         android:id="@+id/wishlist"
         android:icon="@drawable/heartstraight"
-        android:title="위시" />
+        android:title="위시리스트" />
 
     <item
         android:id="@+id/cart"
