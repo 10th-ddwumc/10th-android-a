@@ -4,11 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.umc_assignment2"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.umc_assignment2"
@@ -41,6 +37,15 @@ android {
 }
 
 dependencies {
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // Gson (객체 <-> JSON 변환)
+    implementation("com.google.code.gson:gson:2.10.1")
+    // Coroutine (이미 있을 수 있음, 없으면 추가)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

@@ -10,7 +10,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class CartFragment : Fragment() {
-
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
