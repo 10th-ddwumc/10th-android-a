@@ -6,7 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.ui.cart.CartFragment
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.ui.home.HomeFragment
+import com.example.myapplication.ui.profile.ProfileFragment
+import com.example.myapplication.ui.shop.ShopFragment
+import com.example.myapplication.ui.wishlist.WishlistFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

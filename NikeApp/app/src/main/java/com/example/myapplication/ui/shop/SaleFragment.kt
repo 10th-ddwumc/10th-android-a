@@ -1,21 +1,21 @@
-package com.example.myapplication
+package com.example.myapplication.ui.shop
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.myapplication.databinding.FragmentProfileBinding
+import com.example.myapplication.databinding.FragmentSaleBinding
 
-class ProfileFragment : Fragment() {
+class SaleFragment : Fragment() {
 
-    private lateinit var binding: FragmentProfileBinding
+    private lateinit var binding: FragmentSaleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentSaleBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

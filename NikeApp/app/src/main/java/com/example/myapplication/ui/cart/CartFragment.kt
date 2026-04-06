@@ -1,11 +1,13 @@
-package com.example.myapplication
+package com.example.myapplication.ui.cart
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentCartBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CartFragment : Fragment() {
 
@@ -24,7 +26,7 @@ class CartFragment : Fragment() {
 
         binding.btnOrder.setOnClickListener {
             requireActivity()
-                .findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNavigationView)
+                .findViewById<BottomNavigationView>(R.id.bottomNavigationView)
                 .selectedItemId = R.id.nav_shop
         }
     }

@@ -28,42 +28,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- 태그 -->
-        <TextView
-            android:id="@+id/tvTag"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="태그"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/red"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <!-- 상품명 -->
         <TextView
             android:id="@+id/tvProductName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:text="상품명"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvTag"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- 카테고리 -->
+        <!-- 설명 -->
         <TextView
-            android:id="@+id/tvCategory"
+            android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="카테고리"
+            android:text="설명"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+        <!-- 색상 -->
+        <TextView
+            android:id="@+id/tvColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="색상"
             android:textSize="14sp"
             android:textColor="@color/gray"
-            app:layout_constraintTop_toBottomOf="@id/tvProductName"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -76,7 +75,7 @@
             android:text="가격"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/tvCategory"
+            app:layout_constraintTop_toBottomOf="@id/tvColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

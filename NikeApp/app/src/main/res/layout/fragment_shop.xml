@@ -5,36 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShopFragment">
+    tools:context=".ui.shop.ShopFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:background="@color/white"
         app:elevation="0dp"
-        app:tabIndicatorHeight="3dp"
-        app:tabIndicatorFullWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabGravity="start"
         app:tabIndicatorColor="@color/black"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="3dp"
         app:tabMode="scrollable"
         app:tabRippleColor="@android:color/transparent"
         app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/gray"/>
+        app:tabTextColor="@color/gray" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProducts"
+    <FrameLayout
+        android:id="@+id/shopFragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:clipToPadding="false"
-        android:nestedScrollingEnabled="false"
         app:layout_constraintTop_toBottomOf="@id/tabLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
