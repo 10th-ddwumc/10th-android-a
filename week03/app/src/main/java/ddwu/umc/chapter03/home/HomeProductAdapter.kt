@@ -3,9 +3,10 @@ package ddwu.umc.chapter03.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ddwu.umc.chapter03.ProductData
 import ddwu.umc.chapter03.databinding.ItemHomeProductBinding
 
-class HomeProductAdapter(private var productList: ArrayList<HomeProductData>):
+class HomeProductAdapter(private var productList: List<ProductData>):
     RecyclerView.Adapter<HomeViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -22,4 +23,8 @@ class HomeProductAdapter(private var productList: ArrayList<HomeProductData>):
 
     override fun getItemCount(): Int = productList.size
 
+    fun updateData(newData: List<ProductData>) {
+        this.productList = newData
+        notifyDataSetChanged()
     }
+}
