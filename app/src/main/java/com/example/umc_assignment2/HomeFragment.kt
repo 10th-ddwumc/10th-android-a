@@ -16,6 +16,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var homeAdapter: ProductAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,74 +27,74 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private lateinit var dataStoreManager: DataStoreManager
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dataStoreManager = DataStoreManager(requireContext())
 
-        // DataStore에 저장
-        lifecycleScope.launch {
-            val initialData = listOf(
-                Product("Air Jordan XXXVI", "US$185", R.drawable.image_jordan),
-                Product("Nike Air Force 1 '07", "US$115", R.drawable.image_force)
-            )
-            dataStoreManager.saveHomeProducts(initialData)
-        }
+        setupRecyclerView()                // 1. Adapter/RecyclerView 먼저 세팅
+        setupInitialDataIfEmpty()          // 2. 비어있으면 초기 데이터 저장
+        observeDataStore()                 // 3. DataStore 변화 감지 시작
+    }
 
+    private fun setupRecyclerView() {
+        homeAdapter = ProductAdapter(
+            productList = arrayListOf(),
+            isHome = true,
+            onItemClick = { product ->
+                val intent = Intent(requireContext(), ProductDetailActivity::class.java)
+                intent.putExtra("productName", product.name)
+                intent.putExtra("productPrice", product.price)
+                intent.putExtra("productImage", product.imageRes)
+                startActivity(intent)
+            },
+            onWishClick = { product, heartImageView ->
+                lifecycleScope.launch {
+                    val wishItem = WishItem(product.name, product.price, product.imageRes)
+                    dataStoreManager.toggleWishlistItem(wishItem)
+
+                    val isWished = dataStoreManager.isWishlisted(product.name).first()
+                    if (isWished) {
+                        heartImageView.setImageResource(R.drawable.icon_redheart)
+                    } else {
+                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
+                    }
+                }
+            },
+            checkWishStatus = { product, heartImageView ->
+                lifecycleScope.launch {
+                    val isWished = dataStoreManager.isWishlisted(product.name).first()
+                    if (isWished) {
+                        heartImageView.setImageResource(R.drawable.icon_redheart)
+                    } else {
+                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
+                    }
+                }
+            }
+        )
+
+        binding.homeProductRv.apply {
+            adapter = homeAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun setupInitialDataIfEmpty() {
+        lifecycleScope.launch {
+            dataStoreManager.initializeHomeDataIfEmpty()
+        }
+    }
+
+    private fun observeDataStore() {
         lifecycleScope.launch {
             dataStoreManager.getHomeProducts().collect { productList ->
-                val productAdapter = ProductAdapter(
-                    productList = ArrayList(productList),
-                    isHome = true,
-
-                    // 상품 클릭
-                    onItemClick = { product ->
-                        val intent = Intent(requireContext(), ProductDetailActivity::class.java)
-                        intent.putExtra("productName", product.name)
-                        intent.putExtra("productPrice", product.price)
-                        intent.putExtra("productImage", product.imageRes)
-                        startActivity(intent)
-                    },
-
-                    // 하트 클릭 (토글)
-                    onWishClick = { product, heartImageView ->
-                        lifecycleScope.launch {
-                            val wishItem = WishItem(product.name, product.price, product.imageRes)
-                            dataStoreManager.toggleWishlistItem(wishItem)
-
-                            val isWished = dataStoreManager.isWishlisted(product.name).first()
-                            if (isWished) {
-                                heartImageView.setImageResource(R.drawable.icon_redheart)
-                            } else {
-                                heartImageView.setImageResource(R.drawable.icon_emptyheart)
-                            }
-                        }
-                    },
-                    //화면에 처음 그려질 때 상태 확인해서 색상 칠하기
-                    checkWishStatus = { product, heartImageView ->
-                        lifecycleScope.launch {
-                            val isWished = dataStoreManager.isWishlisted(product.name).first()
-                            if (isWished) {
-                                heartImageView.setImageResource(R.drawable.icon_redheart)
-                            } else {
-                                heartImageView.setImageResource(R.drawable.icon_emptyheart)
-                            }
-                        }
-                    }
-                )
-
-                binding.homeProductRv.apply {
-                    adapter = productAdapter
-                    layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                }
+                homeAdapter.updateData(productList)  // 데이터만 갱신!
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {  // onDestroy → onDestroyView로 수정!
+        super.onDestroyView()
         _binding = null
     }
 }

@@ -1,4 +1,6 @@
 package com.example.umc_assignment2
+import androidx.fragment.app.Fragment
 
-class ShopAllFragment {
+
+class ShopAllFragment: Fragment() {
 }

@@ -14,16 +14,18 @@
         android:id="@+id/main_fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="#77FBF6FB"
         app:layout_constraintBottom_toTopOf="@id/main_bnv"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bnv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

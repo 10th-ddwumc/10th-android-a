@@ -13,7 +13,16 @@ class ProductAdapter(
     private val onWishClick: (Product, ImageView) -> Unit,
     private val checkWishStatus: (Product, ImageView) -> Unit,
     private val isHome: Boolean = false
+
+
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    fun updateData(newData: List<Product>) {
+        productList.clear()
+        productList.addAll(newData)
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(product:Product) {
             binding.itemTitle.text = product.name
