@@ -36,41 +36,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-        val homeDummyData = arrayListOf(
-            HomeProductData(R.drawable.jordan_xxxi, "Air Jordan XXXVI", "US$185"),
-            HomeProductData(R.drawable.airforce107, "Nike Air Force 1 '07", "US$115")
-        )
-
-        productAdapter = HomeProductAdapter(homeDummyData)
-        binding.homeRecyclerview.adapter = productAdapter
-        binding.homeRecyclerview.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        */
-
         dataStoreManager = ProductDataStoreManager(requireContext())
 
         productAdapter = HomeProductAdapter(emptyList())
         binding.homeRecyclerview.adapter = productAdapter
         binding.homeRecyclerview.layoutManager= LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        setupDummyDataToDataStore()
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            dataStoreManager.initHomeDummyDataIfNeeded()
+        }
         observeDataStore()
     }
 
-
-    //더미데이터를 DataStore에 저장.
-    private fun setupDummyDataToDataStore() {
-        val initialDummyData = listOf(
-            ProductData(null, R.drawable.jordan_xxxi, "Air Jordan XXXVI", "US$185", null, null, null),
-            ProductData(null, R.drawable.airforce107, "Nike Air Force 1 '07", "US$115", null, null, null)
-        )
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            dataStoreManager.saveHomeProducts(initialDummyData)
-        }
-    }
 
     private fun observeDataStore() {
         viewLifecycleOwner.lifecycleScope.launch {

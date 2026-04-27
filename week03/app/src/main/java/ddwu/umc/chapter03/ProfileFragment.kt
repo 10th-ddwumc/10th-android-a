@@ -1,59 +1,80 @@
 package ddwu.umc.chapter03
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import ddwu.umc.chapter03.databinding.FragmentProfileBinding
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var binding: FragmentProfileBinding
+
+    private lateinit var followingAdapter: FollowingAdapter
+    private val myApiKey = "reqres_def8c0b458de43c6a6d1a13bbe845d90"
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+        fetchMyProfile()
+        fetchFollowingList()
+    }
+
+    private fun setupRecyclerView() {
+        followingAdapter = FollowingAdapter(emptyList())
+        binding.rvFollowing.apply {
+            adapter = followingAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    // 1번 유저 정보 가져오기 (닉네임, 프로필 사진)
+    private fun fetchMyProfile() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = ApiClient.reqResService.getUser(myApiKey, 1)
+                if (response.isSuccessful) {
+                    response.body()?.data?.let { user ->
+                        binding.tvNickname.text = "${user.firstName} ${user.lastName}"
+                        Glide.with(this@ProfileFragment)
+                            .load(user.avatar)
+                            .circleCrop()
+                            .into(binding.ivProfileImage)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("API_ERROR", "내 정보 호출 실패: ${e.message}")
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    // 팔로잉 리스트 가져오기
+    private fun fetchFollowingList() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = ApiClient.reqResService.getUserList(myApiKey)
+                if (response.isSuccessful) {
+                    val list = response.body()?.data ?: emptyList()
+                    followingAdapter.updateData(list)
+                    binding.tvFollowingTitle.text = "팔로잉 (${list.size})"
                 }
+            } catch (e: Exception) {
+                Log.e("API_ERROR", "리스트 호출 실패: ${e.message}")
             }
+        }
     }
-}
+
+ }

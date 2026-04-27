@@ -1,6 +1,7 @@
 package ddwu.umc.chapter03.shop
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,9 @@ class ShopFragment : Fragment() {
         binding.shopRecyclerview.layoutManager = GridLayoutManager(context, 2)
 
         observeDataStore()
-        setupInitialDataIfEmpty()
+        viewLifecycleOwner.lifecycleScope.launch {
+            dataStoreManager.initShopDummyDataIfNeeded()
+        }
 
         binding.shopTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -81,42 +84,32 @@ class ShopFragment : Fragment() {
     private fun toggleHeart(clickedProduct: ProductData) {
         val updatedList = currentShopList.map {
             if (it.id == clickedProduct.id)
-                it.copy(isWished =  !it.isWished)
+                it.copy(isWished =  !it.isWished) //하트 색깔 반대로 바꿔서 통과!
             else
                 it
         }
 
+        // 화면(View)이 살아있는 동안만 안전하게 백그라운드 작업 실행 (앱 멈춤 방지)
+        // 뷰 생명주기에 맞춘 안전한 코루틴(백그라운드) 실행
         viewLifecycleOwner.lifecycleScope.launch {
             dataStoreManager.saveShopProducts(updatedList)
 
-            val wishlist = updatedList.filter{it.isWished}
+            val wishlist = updatedList.filter{it.isWished} //true인 것만 filter
             dataStoreManager.saveWishlistProducts(wishlist)
         }
     }
 
-    private fun setupInitialDataIfEmpty() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            //현재 저장된 데이터를 한 번 가져와봄
-            val currentData = dataStoreManager.getShopProducts().first()
-
-            //비어있을 때만 더미 데이터를 넣음
-            if (currentData.isEmpty()) {
-                val shopDummyData = listOf(
-                    ProductData(11, R.drawable.socks6pair, "Nike Everyday Plus Cushioned", "US$10", false, "Training Ankle Socks(6Pairs)", "5 Colours"),
-                    ProductData(12, R.drawable.socks_elite_crew, "Nike Elite Crew", "US$16", false, "Basketball Socks", "7 Colours"),
-                    ProductData(13, R.drawable.airforce107, "Nike Air Force 1'07", "US$115", true, "Women's Shoes", "5 Colours"),
-                    ProductData(14, R.drawable.airforce107ssentials, "Jordan ENike Air Force 1'07ssentials", "US$115", true, "Mens's Shoes", "2 Colours")
-                )
-                dataStoreManager.saveShopProducts(shopDummyData)
-            }
-        }
-    }
 
     private fun observeDataStore() {
         viewLifecycleOwner.lifecycleScope.launch {
             dataStoreManager.getShopProducts().collect { productList ->
-                currentShopList = productList // 현재 리스트 업데이트
-                shopAdapter.updateData(productList) // 화면 새로고침
+
+
+                Log.d("DataStoreCheck", "현재 샵 저장소 데이터: $productList")
+
+
+                currentShopList = productList //최신 데이터로 업데이트!
+                shopAdapter.updateData(productList) // 화면(어댑터) 새로고침!
             }
         }
     }
