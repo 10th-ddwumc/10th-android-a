@@ -32,9 +32,9 @@ class HomeFragment : Fragment() {
 
         dataStoreManager = DataStoreManager(requireContext())
 
-        setupRecyclerView()                // 1. Adapter/RecyclerView 먼저 세팅
-        setupInitialDataIfEmpty()          // 2. 비어있으면 초기 데이터 저장
-        observeDataStore()                 // 3. DataStore 변화 감지 시작
+        setupRecyclerView()
+        setupInitialDataIfEmpty()
+        observeDataStore()
     }
 
     private fun setupRecyclerView() {
