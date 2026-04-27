@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.data.RetrofitInstance
 import com.example.myapplication.databinding.FragmentProfileBinding
 import kotlinx.coroutines.launch
+import retrofit2.Retrofit
 
 class ProfileFragment : Fragment() {
 
@@ -31,26 +33,28 @@ class ProfileFragment : Fragment() {
         binding.rvFollowing.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        val apiKey = "reqres_98c878f44187433bb956c563b32560b9"
-
         lifecycleScope.launch {
-            val usersResponse = RetrofitInstance.api.getUsers(apiKey)
-            if (usersResponse.isSuccessful) {
-                val userList = usersResponse.body()?.data ?: emptyList()
-                binding.rvFollowing.adapter = FollowingAdapter(userList)
-                binding.tvFollowing.text = "팔로잉 (${userList.size})"
-            }
-
-            val profileResponse = RetrofitInstance.api.getUser(apiKey, 1)
+            // 내 프로필 API
+            val profileResponse = RetrofitInstance.api.getMyInfo("reqres_98c878f44187433bb956c563b32560b9", 1)
             if (profileResponse.isSuccessful) {
-                val user = profileResponse.body()?.data ?: return@launch
-                binding.tvNickname.text = "${user.first_name} ${user.last_name}"
+                val profile = profileResponse.body()?.data ?: return@launch
+                binding.tvNickname.text = "${profile.first_name} ${profile.last_name}"
                 Glide.with(this@ProfileFragment)
-                    .load(user.avatar)
+                    .load(profile.avatar)
                     .circleCrop()
                     .into(binding.profileCircle)
             }
+
+            // 팔로잉 API
+            val usersResponse = RetrofitInstance.api.getUsers("reqres_98c878f44187433bb956c563b32560b9")
+            if (usersResponse.isSuccessful) {
+                val userList = usersResponse.body()?.data ?: emptyList()
+                Log.d("API_TEST", "size: ${userList.size}")
+                binding.rvFollowing.adapter = FollowingAdapter(userList)
+                binding.tvFollowing.text = "팔로잉 (${userList.size})"
+            }
         }
+
     }
 
     override fun onDestroyView() {

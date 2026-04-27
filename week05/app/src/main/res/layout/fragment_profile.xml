@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutRoot"
+    android:id="@+id/btnEditProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
+    <!-- 프로필 섹션 -->
     <LinearLayout
         android:id="@+id/layoutProfile"
         android:layout_width="match_parent"
@@ -22,7 +23,8 @@
             android:id="@+id/profileCircle"
             android:layout_width="84dp"
             android:layout_height="84dp"
-            android:layout_marginTop="21dp" />
+            android:layout_marginTop="21dp"
+            android:background="@drawable/bg_profile_circle" />
 
         <TextView
             android:id="@+id/tvNickname"
@@ -64,10 +66,12 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_order" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -88,10 +92,12 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_pass" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,10 +118,12 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_event" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,10 +144,12 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_setting" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -150,10 +160,10 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <View
-        android:id="@+id/divider1"
         android:layout_width="0dp"
         android:layout_height="8dp"
         android:background="#F6F6F6"
@@ -161,17 +171,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- 혜택 섹션 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutBenefit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:paddingStart="24dp"
         android:paddingTop="32dp"
         android:paddingEnd="24dp"
         android:paddingBottom="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider1">
+        app:layout_constraintTop_toBottomOf="@id/layoutProfile">
 
         <TextView
             android:id="@+id/tvBenefitTitle"
@@ -206,7 +218,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/divider2"
         android:layout_width="0dp"
         android:layout_height="8dp"
         android:background="#F6F6F6"
@@ -214,6 +225,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- 팔로잉 섹션 -->
     <LinearLayout
         android:id="@+id/layoutFollowing"
         android:layout_width="match_parent"
@@ -225,7 +237,7 @@
         android:paddingBottom="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider2">
+        app:layout_constraintTop_toBottomOf="@id/layoutBenefit">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -238,7 +250,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="팔로잉 (0)"
+                android:text="팔로잉 (3)"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -249,6 +261,7 @@
                 android:text="편집"
                 android:textColor="@color/gray"
                 android:textSize="12sp" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -265,12 +278,14 @@
         android:layout_height="wrap_content"
         android:background="#F6F6F6"
         android:gravity="center"
+        android:paddingStart="79dp"
         android:paddingTop="19dp"
+        android:paddingEnd="79dp"
         android:paddingBottom="19dp"
         android:text="회원 가입일: 2025년 9월"
         android:textColor="#767676"
         android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/layoutFollowing"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
