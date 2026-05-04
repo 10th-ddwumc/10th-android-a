@@ -26,7 +26,11 @@ class WishlistAdapter(private val itemList: List<WishItem>) :
         val item = itemList[position]
         holder.name.text = item.name
         holder.price.text = item.price
-        holder.img.setImageResource(item.imgRes)
+//        holder.img.setImageResource(item.imgRes)
+        val resId = holder.img.context.resources.getIdentifier(
+            item.imgRes, "drawable", holder.img.context.packageName
+        )
+        holder.img.setImageResource(resId)
     }
 
     override fun getItemCount() = itemList.size

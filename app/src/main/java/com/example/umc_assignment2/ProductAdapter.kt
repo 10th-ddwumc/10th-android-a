@@ -27,7 +27,11 @@ class ProductAdapter(
         fun bind(product:Product) {
             binding.itemTitle.text = product.name
             binding.itemPrice.text = product.price
-            binding.itemImage.setImageResource(product.imageRes)
+
+            val resId = binding.root.context.resources.getIdentifier(
+                product.imageRes, "drawable", binding.root.context.packageName
+            )
+            binding.itemImage.setImageResource(resId)
 
             checkWishStatus(product, binding.itemWishBtn)
 

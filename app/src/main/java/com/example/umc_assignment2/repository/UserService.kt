@@ -1,4 +1,4 @@
-package com.example.umc_assignment2
+package com.example.umc_assignment2.repository
 
 import retrofit2.Response
 import retrofit2.http.GET

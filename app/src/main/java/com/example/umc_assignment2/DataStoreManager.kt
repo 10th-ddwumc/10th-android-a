@@ -20,6 +20,19 @@ class DataStoreManager(private val context: Context) {
         val CART_PRODUCTS = stringPreferencesKey("cart_products")
         val WISHLIST_PRODUCTS = stringPreferencesKey("wishlist_products")
         val SHOP_PRODUCTS = stringPreferencesKey("shop_products")
+        val USER_NAME = stringPreferencesKey("user_name")
+    }
+
+    suspend fun saveName(name: String) {
+        context.dataStore.edit { prefs ->
+            prefs[USER_NAME] = name
+        }
+    }
+
+    fun getName(): Flow<String> {
+        return context.dataStore.data.map { prefs ->
+            prefs[USER_NAME] ?: ""
+        }
     }
 
     suspend fun saveHomeProducts(productList: List<Product>) {
@@ -82,31 +95,28 @@ class DataStoreManager(private val context: Context) {
             prefs[WISHLIST_PRODUCTS] = gson.toJson(currentList)
         }
     }
-    suspend fun initializeShopDataIfEmpty() {
-        val currentData = getShopProducts().first()
-
-        if (currentData.isEmpty()) {
-            val initialList = listOf(
-                Product("Nike Everyday Plus Cushioned", "US$10", R.drawable.image_socks, "Tops"),
-                Product("Nike Elite Crew", "US$16", R.drawable.ic_launcher_background, "Tops"),
-                Product("Air Force 1 '07", "US$115", R.drawable.image_force, "Sale"),
-                Product("Jordan ENike Air Force 1 '07ssentials", "US$115", R.drawable.image_mid, "Sale")
-            )
-            saveShopProducts(initialList)
-        }
-    }
-
     suspend fun initializeHomeDataIfEmpty() {
         val currentData = getHomeProducts().first()
-
         if (currentData.isEmpty()) {
             val initialList = listOf(
-                Product("Air Jordan XXXVI", "US$185", R.drawable.image_jordan),
-                Product("Nike Air Force 1 '07", "US$115", R.drawable.image_force)
+                Product("Air Jordan XXXVI", "US$185", "image_jordan"),
+                Product("Nike Air Force 1 '07", "US$115", "image_force")
             )
             saveHomeProducts(initialList)
         }
     }
 
+    suspend fun initializeShopDataIfEmpty() {
+        val currentData = getShopProducts().first()
+        if (currentData.isEmpty()) {
+            val initialList = listOf(
+                Product("Nike Everyday Plus Cushioned", "US$10", "image_socks", "Tops"),
+                Product("Nike Elite Crew", "US$16", "ic_launcher_background", "Tops"),
+                Product("Air Force 1 '07", "US$115", "image_force", "Sale"),
+                Product("Jordan ENike Air Force 1 '07ssentials", "US$115", "image_mid", "Sale")
+            )
+            saveShopProducts(initialList)
+        }
+    }
 
 }

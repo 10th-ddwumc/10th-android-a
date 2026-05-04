@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.umc_assignment2.databinding.ItemFollowingBinding
+import com.example.umc_assignment2.repository.UserData
 
 class FollowingAdapter(private val userList: List<UserData>) :
     RecyclerView.Adapter<FollowingAdapter.FollowingViewHolder>() {

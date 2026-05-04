@@ -6,17 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.umc_assignment2.databinding.FragmentHomeBinding
+import com.example.umc_assignment2.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var dataStoreManager: DataStoreManager
+//    private lateinit var dataStoreManager: DataStoreManager
+    private val viewModel: UserViewModel by viewModels()
     private lateinit var homeAdapter: ProductAdapter
 
     override fun onCreateView(
@@ -30,11 +35,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dataStoreManager = DataStoreManager(requireContext())
+//        dataStoreManager = DataStoreManager(requireContext())
 
         setupRecyclerView()
-        setupInitialDataIfEmpty()
-        observeDataStore()
+//        setupInitialDataIfEmpty()
+        observeViewModel()
     }
 
     private fun setupRecyclerView() {
@@ -49,27 +54,28 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             },
             onWishClick = { product, heartImageView ->
-                lifecycleScope.launch {
+//                lifecycleScope.launch {
                     val wishItem = WishItem(product.name, product.price, product.imageRes)
-                    dataStoreManager.toggleWishlistItem(wishItem)
-
-                    val isWished = dataStoreManager.isWishlisted(product.name).first()
-                    if (isWished) {
-                        heartImageView.setImageResource(R.drawable.icon_redheart)
-                    } else {
-                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
-                    }
-                }
+                    viewModel.toggleWish(wishItem)
+//                    dataStoreManager.toggleWishlistItem(wishItem)
+//                    val isWished = dataStoreManager.isWishlisted(product.name).first()
+//                    if (isWished) {
+//                        heartImageView.setImageResource(R.drawable.icon_redheart)
+//                    } else {
+//                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
+//                    }
+//                }
             },
+
             checkWishStatus = { product, heartImageView ->
-                lifecycleScope.launch {
-                    val isWished = dataStoreManager.isWishlisted(product.name).first()
-                    if (isWished) {
-                        heartImageView.setImageResource(R.drawable.icon_redheart)
-                    } else {
-                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
-                    }
-                }
+//                lifecycleScope.launch {
+//                    val isWished = dataStoreManager.isWishlisted(product.name).first()
+//                    if (isWished) {
+//                        heartImageView.setImageResource(R.drawable.icon_redheart)
+//                    } else {
+//                        heartImageView.setImageResource(R.drawable.icon_emptyheart)
+//                    }
+//                }
             }
         )
 
@@ -79,21 +85,28 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupInitialDataIfEmpty() {
-        lifecycleScope.launch {
-            dataStoreManager.initializeHomeDataIfEmpty()
-        }
-    }
+//    private fun setupInitialDataIfEmpty() {
+//        lifecycleScope.launch {
+//            dataStoreManager.initializeHomeDataIfEmpty()
+//        }
+//    }
+//
+//    private fun observeDataStore() {
+//        lifecycleScope.launch {
+//            dataStoreManager.getHomeProducts().collect { productList ->
+//                homeAdapter.updateData(productList)
+//            }
+//        }
+//    }
 
-    private fun observeDataStore() {
-        lifecycleScope.launch {
-            dataStoreManager.getHomeProducts().collect { productList ->
-                homeAdapter.updateData(productList)  // 데이터만 갱신!
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.homeProducts.collect { productList ->
+                homeAdapter.updateData(productList)
             }
         }
     }
-
-    override fun onDestroyView() {  // onDestroy → onDestroyView로 수정!
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
