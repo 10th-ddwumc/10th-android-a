@@ -2,12 +2,16 @@ package ddwu.umc.chapter03
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import ddwu.umc.chapter03.databinding.ActivityMainBinding
-import ddwu.umc.chapter03.home.HomeFragment
-import ddwu.umc.chapter03.shop.ShopFragment
-import ddwu.umc.chapter03.wishlist.WishlistFragment
+import ddwu.umc.chapter03.ui.CartFragment
+import ddwu.umc.chapter03.ui.home.HomeFragment
+import ddwu.umc.chapter03.ui.profile.ProfileFragment
+import ddwu.umc.chapter03.ui.shop.ShopFragment
+import ddwu.umc.chapter03.ui.wishlist.WishlistFragment
 
 // MainActivity.kt
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

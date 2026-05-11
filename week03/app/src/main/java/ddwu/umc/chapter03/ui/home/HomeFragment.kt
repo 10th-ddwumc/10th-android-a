@@ -1,4 +1,4 @@
-package ddwu.umc.chapter03.home
+package ddwu.umc.chapter03.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import ddwu.umc.chapter03.ProductData
-import ddwu.umc.chapter03.ProductDataStoreManager
-import ddwu.umc.chapter03.R
+import ddwu.umc.chapter03.data.local.ProductDataStoreManager
 import ddwu.umc.chapter03.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 

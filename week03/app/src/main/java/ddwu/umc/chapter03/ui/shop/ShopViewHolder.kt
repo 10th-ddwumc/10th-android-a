@@ -1,8 +1,8 @@
-package ddwu.umc.chapter03.shop
+package ddwu.umc.chapter03.ui.shop
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import ddwu.umc.chapter03.ProductData
+import ddwu.umc.chapter03.data.model.ProductData
 import ddwu.umc.chapter03.R
 import ddwu.umc.chapter03.databinding.ItemShopProductBinding
 

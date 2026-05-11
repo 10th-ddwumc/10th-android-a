@@ -1,8 +1,10 @@
-package ddwu.umc.chapter03
+package ddwu.umc.chapter03.ui.profile
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ddwu.umc.chapter03.data.model.UserData
 import ddwu.umc.chapter03.databinding.ItemFollowingBinding
 
 class FollowingAdapter(private var userList: List<UserData>) :

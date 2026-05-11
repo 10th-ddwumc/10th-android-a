@@ -1,9 +1,9 @@
-package ddwu.umc.chapter03.shop
+package ddwu.umc.chapter03.ui.shop
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ddwu.umc.chapter03.ProductData
+import ddwu.umc.chapter03.data.model.ProductData
 import ddwu.umc.chapter03.databinding.ItemShopProductBinding
 
 class ShopProductAdapter(private var productList: List<ProductData>,

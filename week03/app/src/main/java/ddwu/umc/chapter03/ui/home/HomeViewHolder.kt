@@ -1,7 +1,7 @@
-package ddwu.umc.chapter03.home
+package ddwu.umc.chapter03.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
-import ddwu.umc.chapter03.ProductData
+import ddwu.umc.chapter03.data.model.ProductData
 import ddwu.umc.chapter03.databinding.ItemHomeProductBinding
 
 class HomeViewHolder(val binding: ItemHomeProductBinding) :

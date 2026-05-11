@@ -1,4 +1,4 @@
-package ddwu.umc.chapter03
+package ddwu.umc.chapter03.data.local
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
@@ -6,6 +6,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import ddwu.umc.chapter03.R
+import ddwu.umc.chapter03.data.model.ProductData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -42,8 +44,24 @@ class ProductDataStoreManager(private val context: Context) {
 
         if (currentData.isEmpty()) {
             val initialDummyData = listOf(
-                ProductData(null, R.drawable.jordan_xxxi, "Air Jordan XXXVI", "US$185", null, null, null),
-                ProductData(null, R.drawable.airforce107, "Nike Air Force 1 '07", "US$115", null, null, null)
+                ProductData(
+                    null,
+                    R.drawable.jordan_xxxi,
+                    "Air Jordan XXXVI",
+                    "US$185",
+                    null,
+                    null,
+                    null
+                ),
+                ProductData(
+                    null,
+                    R.drawable.airforce107,
+                    "Nike Air Force 1 '07",
+                    "US$115",
+                    null,
+                    null,
+                    null
+                )
             )
             saveHomeProducts(initialDummyData)
         }
@@ -69,10 +87,42 @@ class ProductDataStoreManager(private val context: Context) {
 
         if (currentData.isEmpty()) {
             val shopDummyData = listOf(
-                ProductData(11, R.drawable.socks6pair, "Nike Everyday Plus Cushioned", "US$10", false, "Training Ankle Socks(6Pairs)", "5 Colours"),
-                ProductData(12, R.drawable.socks_elite_crew, "Nike Elite Crew", "US$16", false, "Basketball Socks", "7 Colours"),
-                ProductData(13, R.drawable.airforce107, "Nike Air Force 1'07", "US$115", true, "Women's Shoes", "5 Colours"),
-                ProductData(14, R.drawable.airforce107ssentials, "Jordan ENike Air Force 1'07ssentials", "US$115", true, "Mens's Shoes", "2 Colours")
+                ProductData(
+                    11,
+                    R.drawable.socks6pair,
+                    "Nike Everyday Plus Cushioned",
+                    "US$10",
+                    false,
+                    "Training Ankle Socks(6Pairs)",
+                    "5 Colours"
+                ),
+                ProductData(
+                    12,
+                    R.drawable.socks_elite_crew,
+                    "Nike Elite Crew",
+                    "US$16",
+                    false,
+                    "Basketball Socks",
+                    "7 Colours"
+                ),
+                ProductData(
+                    13,
+                    R.drawable.airforce107,
+                    "Nike Air Force 1'07",
+                    "US$115",
+                    true,
+                    "Women's Shoes",
+                    "5 Colours"
+                ),
+                ProductData(
+                    14,
+                    R.drawable.airforce107ssentials,
+                    "Jordan ENike Air Force 1'07ssentials",
+                    "US$115",
+                    true,
+                    "Mens's Shoes",
+                    "2 Colours"
+                )
             )
             saveShopProducts(shopDummyData)
         }

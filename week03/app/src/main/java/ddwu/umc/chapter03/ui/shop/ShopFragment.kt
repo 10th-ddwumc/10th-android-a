@@ -1,4 +1,4 @@
-package ddwu.umc.chapter03.shop
+package ddwu.umc.chapter03.ui.shop
 
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
-import ddwu.umc.chapter03.ProductData
-import ddwu.umc.chapter03.ProductDataStoreManager
+import ddwu.umc.chapter03.data.model.ProductData
+import ddwu.umc.chapter03.data.local.ProductDataStoreManager
 import ddwu.umc.chapter03.R
-import ddwu.umc.chapter03.shop.ShopProductAdapter
 import ddwu.umc.chapter03.databinding.FragmentShopBinding
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ShopFragment : Fragment() {

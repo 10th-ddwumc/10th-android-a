@@ -1,5 +1,7 @@
-package ddwu.umc.chapter03
+package ddwu.umc.chapter03.data.api
 
+import ddwu.umc.chapter03.data.model.SingleUserResponse
+import ddwu.umc.chapter03.data.model.UserListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -11,7 +13,7 @@ interface ReqResService {
     @GET("api/users/{id}")
     suspend fun getUser(
         @Header("x-api-key") apiKey: String,
-        @Path("id") userId: Int
+        @Path("id") userID : Int
     ): Response<SingleUserResponse>
 
     //2. 팔로잉 리스트 가져오기 (유저 전체 목록)!!!

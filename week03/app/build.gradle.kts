@@ -1,14 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
     namespace = "ddwu.umc.chapter03"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ddwu.umc.chapter03"
@@ -29,9 +28,15 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    // Set JVM Toolchain to 11 to ensure consistency across all compile tasks (Java, Kotlin, Kapt)
+    kotlin {
+        jvmToolchain(11)
     }
 
     viewBinding {
@@ -71,4 +76,12 @@ dependencies {
     // 이미지 로딩을 위한 Glide 라이브러리
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.activity:activity-ktx:1.8.0")
 }

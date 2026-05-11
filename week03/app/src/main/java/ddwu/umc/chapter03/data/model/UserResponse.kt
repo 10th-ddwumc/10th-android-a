@@ -1,4 +1,4 @@
-package ddwu.umc.chapter03
+package ddwu.umc.chapter03.data.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package ddwu.umc.chapter03.wishlist
+package ddwu.umc.chapter03.ui.wishlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import ddwu.umc.chapter03.ProductDataStoreManager
+import ddwu.umc.chapter03.data.local.ProductDataStoreManager
 import ddwu.umc.chapter03.databinding.FragmentWishlistBinding
 import kotlinx.coroutines.launch
 

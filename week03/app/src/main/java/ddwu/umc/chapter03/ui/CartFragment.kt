@@ -1,12 +1,13 @@
-package ddwu.umc.chapter03
+package ddwu.umc.chapter03.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import ddwu.umc.chapter03.R
 import ddwu.umc.chapter03.databinding.FragmentCartBinding
-import ddwu.umc.chapter03.shop.ShopFragment
+import ddwu.umc.chapter03.ui.shop.ShopFragment
 
 class CartFragment : Fragment() {
 
