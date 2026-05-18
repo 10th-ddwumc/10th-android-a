@@ -47,7 +47,7 @@ class ShopFragment : Fragment() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
-                    0 -> { // 전체 탭
+                    0 -> {
                         binding.shopProductRv.visibility = View.VISIBLE
                         binding.shopFragmentContainer.visibility = View.GONE
                     }

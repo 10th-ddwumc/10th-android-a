@@ -22,10 +22,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
+import com.example.umc_assignment2.Product
 import com.example.umc_assignment2.R
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    products: List<Product>,
+    onItemClick: (Product) -> Unit = {},
+    onWishClick: (Product) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -57,5 +62,26 @@ fun HomeScreen() {
                 .padding(top = 20.dp)
         )
 
+        Text(
+            text = "나이키 최신 상품",
+            fontSize = 20.sp,
+            modifier = Modifier.padding(start = 24.dp, top = 24.dp, bottom = 12.dp)
+        )
+
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(
+                items = products,
+                key = { product -> product.id }
+            ) { product ->
+                ProductItem(
+                    product = product,
+                    onItemClick = onItemClick,
+                    onWishClick = onWishClick
+                )
+            }
+        }
     }
 }

@@ -99,8 +99,8 @@ class DataStoreManager(private val context: Context) {
         val currentData = getHomeProducts().first()
         if (currentData.isEmpty()) {
             val initialList = listOf(
-                Product("Air Jordan XXXVI", "US$185", "image_jordan"),
-                Product("Nike Air Force 1 '07", "US$115", "image_force")
+                Product(1,"Air Jordan XXXVI", "US$185", "image_jordan"),
+                Product(2,"Nike Air Force 1 '07", "US$115", "image_force")
             )
             saveHomeProducts(initialList)
         }
@@ -110,10 +110,10 @@ class DataStoreManager(private val context: Context) {
         val currentData = getShopProducts().first()
         if (currentData.isEmpty()) {
             val initialList = listOf(
-                Product("Nike Everyday Plus Cushioned", "US$10", "image_socks", "Tops"),
-                Product("Nike Elite Crew", "US$16", "ic_launcher_background", "Tops"),
-                Product("Air Force 1 '07", "US$115", "image_force", "Sale"),
-                Product("Jordan ENike Air Force 1 '07ssentials", "US$115", "image_mid", "Sale")
+                Product(1, "Nike Everyday Plus Cushioned", "US$10", "image_socks", "Tops"),
+                Product(2,"Nike Elite Crew", "US$16", "image_socks", "Tops"),
+                Product(3,"Air Force 1 '07", "US$115", "image_force", "Sale"),
+                Product(4,"Jordan ENike Air Force 1 '07ssentials", "US$115", "image_mid", "Sale")
             )
             saveShopProducts(initialList)
         }

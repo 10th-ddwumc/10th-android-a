@@ -7,15 +7,19 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.umc_assignment2.R
+import com.example.umc_assignment2.WishItem
+import com.example.umc_assignment2.viewmodel.UserViewModel
 
 @Composable
 fun MainScreen() {
@@ -23,7 +27,6 @@ fun MainScreen() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    // 바텀 탭 목록
     val tabs = listOf(
         Triple(AppDestination.Home, "홈", R.drawable.housesimple),
         Triple(AppDestination.Shop, "구매하기", R.drawable.listmagnifyingglass),
@@ -65,14 +68,21 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable<AppDestination.Home> {
-                HomeScreen()
+                val viewModel: UserViewModel = hiltViewModel()
+                val products by viewModel.homeProducts.collectAsState(initial = emptyList())
+
+                HomeScreen(
+                    products = products,
+                    onItemClick = { product ->
+                    },
+                    onWishClick = { product ->
+                        val wishItem = WishItem(product.name, product.price, product.imageRes)
+                        viewModel.toggleWish(wishItem)
+                    }
+                )
             }
-            composable<AppDestination.Shop> {
-                ShopScreen()
-            }
-            composable<AppDestination.Wishlist> {
-                WishlistScreen()
-            }
+            composable<AppDestination.Shop> { ShopScreen() }
+            composable<AppDestination.Wishlist> { WishlistScreen() }
             composable<AppDestination.Cart> {
                 CartScreen(
                     onOrderClick = {
@@ -86,9 +96,7 @@ fun MainScreen() {
                     }
                 )
             }
-            composable<AppDestination.Profile> {
-                ProfileScreen()
-            }
+            composable<AppDestination.Profile> { ProfileScreen() }
         }
     }
 }

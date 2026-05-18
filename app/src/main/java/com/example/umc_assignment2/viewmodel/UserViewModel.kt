@@ -2,7 +2,7 @@ package com.example.umc_assignment2.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.umc_assignment2.Product // 본인 패키지 위치 확인!
+import com.example.umc_assignment2.Product
 import com.example.umc_assignment2.WishItem
 import com.example.umc_assignment2.repository.UserData
 import com.example.umc_assignment2.repository.UserLocalRepository
@@ -27,12 +27,16 @@ class UserViewModel @Inject constructor(
     private val _homeProducts = MutableStateFlow<List<Product>>(emptyList())
     val homeProducts: StateFlow<List<Product>> = _homeProducts.asStateFlow()
 
+    private val _shopProducts = MutableStateFlow<List<Product>>(emptyList())
+    val shopProducts: StateFlow<List<Product>> = _shopProducts.asStateFlow()
+
     private val _storedName = MutableStateFlow("")
     val storedName: StateFlow<String> = _storedName.asStateFlow()
 
     init {
         observeStoredName()
         fetchHomeProducts()
+        fetchShopProducts()
     }
 
     fun fetchUserList(page: Int = 1) {
@@ -49,6 +53,15 @@ class UserViewModel @Inject constructor(
             localRepository.initializeHomeData()
             localRepository.getHomeProducts().collectLatest { products ->
                 _homeProducts.value = products
+            }
+        }
+    }
+
+    private fun fetchShopProducts() {
+        viewModelScope.launch {
+            localRepository.initializeShopData()
+            localRepository.getShopProducts().collectLatest { products ->
+                _shopProducts.value = products
             }
         }
     }
