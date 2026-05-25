@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 
-// Shop 화면에 띄울 새로운 더미 데이터 (id값 안 겹치게 100번대로!)
+
 val dummyShopProducts = listOf(
     Product(101, "Nike Everyday Plus Cushioned", "Training Ankle Socks (6 Pairs)", 5, 10, R.drawable.socks6pair),
     Product(102, "Nike Elite Crew", "Basketball Socks", 7, 16, R.drawable.socks),

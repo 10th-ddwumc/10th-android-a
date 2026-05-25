@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
-// 4. 개별 상품 아이템 (여기에 하트 기능 추가!)
+// 개별 상품 아이템
 @Composable
 fun ProductItem(
     product: Product,
