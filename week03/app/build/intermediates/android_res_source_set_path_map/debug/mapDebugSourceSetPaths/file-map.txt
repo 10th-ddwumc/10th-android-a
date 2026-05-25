@@ -1,0 +1,7 @@
+ddwu.umc.chapter03.app-pngs-0 C:\Users\kyure\10th-android-a\week03\app\build\generated\res\pngs\debug
+ddwu.umc.chapter03.app-updated_navigation_xml-1 C:\Users\kyure\10th-android-a\week03\app\build\generated\updated_navigation_xml\debug
+ddwu.umc.chapter03.app-packageDebugResources-2 C:\Users\kyure\10th-android-a\week03\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+ddwu.umc.chapter03.app-packageDebugResources-3 C:\Users\kyure\10th-android-a\week03\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+ddwu.umc.chapter03.app-debug-4 C:\Users\kyure\10th-android-a\week03\app\build\intermediates\merged_res\debug\mergeDebugResources
+ddwu.umc.chapter03.app-debug-5 C:\Users\kyure\10th-android-a\week03\app\src\debug\res
+ddwu.umc.chapter03.app-main-6 C:\Users\kyure\10th-android-a\week03\app\src\main\res

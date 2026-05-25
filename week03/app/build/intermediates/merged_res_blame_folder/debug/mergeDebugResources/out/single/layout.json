@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\item_wishlist_product.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\item_wishlist_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_wishlist.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_wishlist.xml"
+    },
+    {
+        "merged": "ddwu.umc.chapter03.app-mergeDebugResources-43:/layout/activity_main.xml",
+        "source": "ddwu.umc.chapter03.app-main-46:/layout/activity_main.xml"
+    },
+    {
+        "merged": "ddwu.umc.chapter03.app-mergeDebugResources-43:/layout/fragment_shop_shoes.xml",
+        "source": "ddwu.umc.chapter03.app-main-46:/layout/fragment_shop_shoes.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "ddwu.umc.chapter03.app-mergeDebugResources-43:/layout/fragment_home.xml",
+        "source": "ddwu.umc.chapter03.app-main-46:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_cart.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_cart.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\item_following.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\item_following.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_shop.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_shop.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\item_home_product.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\item_home_product.xml"
+    },
+    {
+        "merged": "ddwu.umc.chapter03.app-mergeDebugResources-43:/layout/fragment_shop_top.xml",
+        "source": "ddwu.umc.chapter03.app-main-46:/layout/fragment_shop_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_shop_shoes.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_shop_shoes.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\item_shop_product.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\item_shop_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-mergeDebugResources-43:\\layout\\fragment_shop_top.xml",
+        "source": "C:\\Users\\kyure\\.gradle\\daemon\\9.3.1\\ddwu.umc.chapter03.app-main-46:\\layout\\fragment_shop_top.xml"
+    }
+]
