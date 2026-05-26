@@ -33,6 +33,18 @@ class UserViewModel @Inject constructor(
     private val _storedName = MutableStateFlow("")
     val storedName: StateFlow<String> = _storedName.asStateFlow()
 
+    private val _userOne = MutableStateFlow<UserData?>(null)
+    val userOne: StateFlow<UserData?> = _userOne.asStateFlow()
+
+    fun fetchUserOne() {
+        viewModelScope.launch {
+            val response = remoteRepository.getUserOne()
+            if (response.isSuccessful) {
+                _userOne.value = response.body()?.data
+            }
+        }
+    }
+
     init {
         observeStoredName()
         fetchHomeProducts()
