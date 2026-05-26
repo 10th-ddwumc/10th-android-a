@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">UMC_assignment2</string>
+
+    <string name="discover">Discover</string>
+    <string name="_9_4">9월 4일 목요일</string>
+
+    <string name="shop_title">구매하기</string>
+    <string name="category_all">전체</string>
+    <string name="category_tops">Tops &amp; T-Shirts</string>
+    <string name="category_shoes">Shoes</string>
+
+    <string name="cart_empty">장바구니가 비어 있습니다.</string>
+    <string name="cart_desc">제품을 추가하면 여기에 표시됩니다.</string>
+    <string name="order_button">주문하기</string>
+
+
+</resources>
